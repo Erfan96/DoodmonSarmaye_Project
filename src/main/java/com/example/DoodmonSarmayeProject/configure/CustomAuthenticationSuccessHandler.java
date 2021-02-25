@@ -26,7 +26,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
         String username = authentication.getName();
 
-        System.out.println("username" + username);
+        System.out.println("username " + username);
 
         UserDetails theUser = userService.loadUserByUsername(username);
 
