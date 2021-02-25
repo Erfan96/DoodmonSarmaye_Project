@@ -14,7 +14,7 @@
     <h1>فرم ورود</h1>
     <p class="label label-default">ورود به سامانه مدیریت درخواست کارگزاری دودمان سرمایه</p>
 </div>
-    <form>
+    <form th:action="@{/authenticateTheUser}" method="post">
         <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
             <input type="text" class="form-control" name="username" id="username" placeholder="نام کاربری را وارد کنید">
