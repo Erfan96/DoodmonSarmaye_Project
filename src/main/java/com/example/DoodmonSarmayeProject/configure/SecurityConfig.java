@@ -49,11 +49,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/showLoginPage")
                 .loginProcessingUrl("/authenticateTheUser")
                 .successHandler(customAuthenticationSuccessHandler)
-                .permitAll();
-//                .and()
-//                .logout().permitAll()
-//                .and()
-//                .exceptionHandling().accessDeniedPage("/access-denied");
+                .permitAll()
+                .and()
+                .logout().permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/access-denied");
 
         }
 }
