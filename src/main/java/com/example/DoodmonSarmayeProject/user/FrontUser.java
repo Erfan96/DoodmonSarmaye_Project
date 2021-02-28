@@ -7,41 +7,41 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @FieldMatch.List({
-        @FieldMatch(first = "password", second = "matchingPassword", message = "The password fields must match")
+        @FieldMatch(first = "password", second = "matchingPassword", message = "رمز عبور و تکرار آن همخوانی ندارند")
 })
 
 public class FrontUser {
-    @NotNull(message = "is required")
-    @Size(min = 1, message = "is required")
+    @NotNull(message = "باید وارد شود")
+    @Size(min = 1, message = "نامعتبر است")
     private String userName;
 
-    @NotNull(message = "is required")
-    @Size(min = 1, message = "is required")
+    @NotNull(message = "باید وارد شود")
+    @Size(min = 1, message = "نامعتبر است")
     private String firstName;
 
-    @NotNull(message = "is required")
-    @Size(min = 1, message = "is required")
+    @NotNull(message = "باید وارد شود")
+    @Size(min = 1, message = "نامعتبر است")
     private String lastName;
 
-    @NotNull(message = "is required")
-    @Size(min = 1, message = "is required")
+    @NotNull(message = "باید وارد شود")
+    @Size(min = 1, message = "نامعتبر است")
     private String password;
 
-    @NotNull(message = "is required")
-    @Size(min = 1, message = "is required")
+    @NotNull(message = "باید وارد شود")
+    @Size(min = 1, message = "نامعتبر است")
     private String matchingPassword;
 
-    @NotNull(message = "is required")
-    @Size(min = 1, message = "is required")
+    @NotNull(message = "باید وارد شود")
+    @Size(min = 1, message = "نامعتبر است")
     private String phoneNumber;
 
-    @NotNull(message = "is required")
-    @Size(min = 1, message = "is required")
+    @NotNull(message = "باید وارد شود")
+    @Size(min = 1, message = "نامعتبر است")
     private String nationalCode;
 
     @ValidEmail
-    @NotNull(message = "is required")
-    @Size(min = 1, message = "is required")
+    @NotNull(message = "باید وارد شود")
+    @Size(min = 1, message = "نامعتبر است")
     private String email;
 
     public FrontUser() {
