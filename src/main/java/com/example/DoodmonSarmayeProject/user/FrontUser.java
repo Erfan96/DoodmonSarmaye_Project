@@ -3,6 +3,7 @@ package com.example.DoodmonSarmayeProject.user;
 import com.example.DoodmonSarmayeProject.validation.FieldMatch;
 import com.example.DoodmonSarmayeProject.validation.ValidEmail;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -11,37 +12,37 @@ import javax.validation.constraints.Size;
 })
 
 public class FrontUser {
-    @NotNull(message = "باید وارد شود")
-    @Size(min = 1, message = "نامعتبر است")
+    @NotBlank(message = "باید وارد شود")
+    @Size(min = 6, max = 50 ,message = "نامعتبر است")
     private String userName;
 
-    @NotNull(message = "باید وارد شود")
-    @Size(min = 1, message = "نامعتبر است")
+    @NotBlank(message = "باید وارد شود")
+    @Size(min = 2, max = 50 ,message = "نامعتبر است")
     private String firstName;
 
-    @NotNull(message = "باید وارد شود")
-    @Size(min = 1, message = "نامعتبر است")
+    @NotBlank(message = "باید وارد شود")
+    @Size(min = 2, max = 50 ,message = "نامعتبر است")
     private String lastName;
 
-    @NotNull(message = "باید وارد شود")
-    @Size(min = 1, message = "نامعتبر است")
+    @NotBlank(message = "باید وارد شود")
+    @Size(min = 6, message = "نامعتبر است")
     private String password;
 
-    @NotNull(message = "باید وارد شود")
+    @NotBlank(message = "باید وارد شود")
     @Size(min = 1, message = "نامعتبر است")
     private String matchingPassword;
 
-    @NotNull(message = "باید وارد شود")
-    @Size(min = 1, message = "نامعتبر است")
+    @NotBlank(message = "باید وارد شود")
+    @Size(min = 11, max = 11 ,message = "نامعتبر است")
     private String phoneNumber;
 
-    @NotNull(message = "باید وارد شود")
-    @Size(min = 1, message = "نامعتبر است")
+    @NotBlank(message = "باید وارد شود")
+    @Size(message = "نامعتبر است")
     private String nationalCode;
 
     @ValidEmail
-    @NotNull(message = "باید وارد شود")
-    @Size(min = 1, message = "نامعتبر است")
+    @NotBlank(message = "باید وارد شود")
+    @Size(message = "نامعتبر است")
     private String email;
 
     public FrontUser() {
