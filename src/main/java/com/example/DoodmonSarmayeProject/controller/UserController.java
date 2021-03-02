@@ -10,4 +10,9 @@ public class UserController {
     public String showHome() {
         return "home";
     }
+
+    @GetMapping("/access-denied")
+    public String showAccessDenied() {
+        return "access-denied";
+    }
 }
