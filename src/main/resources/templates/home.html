@@ -30,8 +30,13 @@
 <div>
 
     <div dir="rtl">
-    <a href="/logout" class="btn btn-warning">خروج</a>
+        <a th:href="@{/showFormForUpdate}" class="btn btn-warning">ویرایش حساب کاربری</a>
     </div>
+
+    <div dir="rtl">
+    <a th:href="@{/logout}" class="btn btn-danger">خروج</a>
+    </div>
+
 
     <div sec:authorize="hasAnyAuthority('ROLE_ADMIN')" dir="ltr">
     <form th:action="@{/admin/adminPage}">
