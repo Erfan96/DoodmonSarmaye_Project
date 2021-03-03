@@ -32,6 +32,18 @@ public class RegisterService implements UserDetailsService {
     }
 
     @Transactional
+    public UserDetails loadUserByPhoneNumber(String phone) throws UsernameNotFoundException {
+        Optional<User> user = this.userRepository.findByPhoneNumber(phone);
+        return user.orElse(null);
+    }
+
+    @Transactional
+    public UserDetails loadUserByNationalCode(String code) throws UsernameNotFoundException {
+        Optional<User> user = this.userRepository.findByNationalCode(code);
+        return user.orElse(null);
+    }
+
+    @Transactional
     public void saveUser(FrontUser fUser) {
         User user = new User();
 
