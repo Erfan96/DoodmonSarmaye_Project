@@ -4,7 +4,6 @@ import com.example.DoodmonSarmayeProject.validation.FieldMatch;
 import com.example.DoodmonSarmayeProject.validation.ValidEmail;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @FieldMatch.List({
@@ -12,6 +11,9 @@ import javax.validation.constraints.Size;
 })
 
 public class FrontUser {
+
+    private Long id;
+
     @NotBlank(message = "باید وارد شود")
     @Size(min = 6, max = 50 ,message = "نامعتبر است")
     private String userName;
@@ -47,6 +49,14 @@ public class FrontUser {
 
     public FrontUser() {
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUserName() {
