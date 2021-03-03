@@ -31,7 +31,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         UserDetails theUser = userService.loadUserByUsername(username);
 
         HttpSession session = httpServletRequest.getSession();
-        session.setAttribute("user", theUser);
+        session.setAttribute("log-user", theUser);
 
         httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/");
     }
