@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>لیست کاربران</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<table dir="rtl" class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>نام کاربری</th>
+        <th>نام</th>
+        <th>نام خانوادگی</th>
+        <th>موبایل</th>
+        <th>کد ملی</th>
+        <th>ایمیل</th>
+        <th>نوع</th>
+        <th>فعال</th>
+        <th>جزئیات</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.firstName}"></td>
+        <td th:text="${user.lastName}"></td>
+        <td th:text="${user.phoneNumber}"></td>
+        <td th:text="${user.nationalCode}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.roles}"></td>
+        <td th:text="${user.enabled}"></td>
+        <td><a th:href="@{/admin/}">ویرایش</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
