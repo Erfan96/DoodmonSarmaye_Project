@@ -2,6 +2,7 @@ package com.example.DoodmonSarmayeProject.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.context.properties.bind.Name;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +22,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String username;
 
     private String firstName;
@@ -29,8 +31,10 @@ public class User implements UserDetails {
 
     private String password;
 
+    @Column(unique = true)
     private String phoneNumber;
 
+    @Column(unique = true)
     private String nationalCode;
 
     private String email;
