@@ -28,18 +28,33 @@ public class RegisterController {
 
     @PostMapping("/adduser")
     public String addUser(@Valid @ModelAttribute("frontUser") FrontUser frontUser,
-                          BindingResult result, Model model){
+                          BindingResult result, Model model) {
 
         if (result.hasErrors()) {
             return "signup-page";
         }
 
-        UserDetails existing = registerService.loadUserByUsername(frontUser.getUserName());
-        if (existing != null) {
-            model.addAttribute("User", new FrontUser());
-            model.addAttribute("registrationError", "این نام کاربری قبلا ثبت نام کرده.");
-            return "signup-page";
-        }
+            UserDetails existingUser = registerService.loadUserByUsername(frontUser.getUserName());
+            UserDetails existingNationalCode = registerService.loadUserByNationalCode(frontUser.getNationalCode());
+            UserDetails existingPhoneNumber = registerService.loadUserByPhoneNumber(frontUser.getPhoneNumber());
+            if (existingUser != null || existingNationalCode != null || existingPhoneNumber != null) {
+
+                if (existingUser != null) {
+                    model.addAttribute("User", new FrontUser());
+                    model.addAttribute("usernameError", "این نام کاربری قبلا ثبت نام کرده");
+                }
+
+                if (existingNationalCode != null) {
+                    model.addAttribute("nationalCodeError", "این کدملی در سامانه موجود است");
+                }
+
+                if (existingPhoneNumber != null) {
+                    model.addAttribute("phoneNumberError", "این شماره موبایل تکراری می باشد");
+                }
+
+                return "signup-page";
+            }
+
 
         registerService.saveUser(frontUser);
         return "registration-confirmation";
