@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>لیست کاربران</title>
@@ -31,7 +32,7 @@
         <td th:text="${user.email}"></td>
         <td th:text="${user.roles}"></td>
         <td th:text="${user.enabled}"></td>
-        <td><a th:href="@{/admin/}">ویرایش</a></td>
+        <td><span th:unless="${user.username == #authentication.name}"><a th:href="@{/admin/showFormForUpdate(Id=${user.getId()})}">ویرایش</a></span></td>
     </tr>
     </tbody>
 </table>
