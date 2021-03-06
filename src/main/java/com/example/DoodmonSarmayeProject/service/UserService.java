@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -63,6 +62,28 @@ public class UserService implements UserDetailsService {
         user.setNationalCode(frontUser.getNationalCode());
         user.setPhoneNumber(frontUser.getPhoneNumber());
         user.setEmail(frontUser.getEmail());
+
+        this.userRepository.save(user);
+    }
+
+    public void saveUserFromAdminWithRole(FrontUser frontUser) {
+        User user = loadUserByID(frontUser.getId());
+
+        user.setUsername(frontUser.getUserName());
+        user.setFirstName(frontUser.getFirstName());
+        user.setLastName(frontUser.getLastName());
+        user.setNationalCode(frontUser.getNationalCode());
+        user.setPhoneNumber(frontUser.getPhoneNumber());
+        user.setEmail(frontUser.getEmail());
+        user.setRoles(frontUser.getRole());
+        user.setEnabled(frontUser.isEnabled());
+
+        this.userRepository.save(user);
+    }
+
+    public void disableAccountById(Long id) {
+        User user = loadUserByID(id);
+        user.setEnabled(false);
 
         this.userRepository.save(user);
     }
