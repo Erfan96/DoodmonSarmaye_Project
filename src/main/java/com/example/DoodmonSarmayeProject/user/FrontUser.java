@@ -1,10 +1,12 @@
 package com.example.DoodmonSarmayeProject.user;
 
+import com.example.DoodmonSarmayeProject.entities.Role;
 import com.example.DoodmonSarmayeProject.validation.FieldMatch;
 import com.example.DoodmonSarmayeProject.validation.ValidEmail;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @FieldMatch.List({
         @FieldMatch(first = "password", second = "matchingPassword", message = "رمز عبور و تکرار آن همخوانی ندارند")
@@ -46,6 +48,10 @@ public class FrontUser {
     @NotBlank(message = "باید وارد شود")
     @Size(message = "نامعتبر است")
     private String email;
+
+    private List<Role> role;
+
+    private boolean enabled;
 
     public FrontUser() {
 
@@ -121,5 +127,21 @@ public class FrontUser {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Role> getRole() {
+        return role;
+    }
+
+    public void setRole(List<Role> role) {
+        this.role = role;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }
