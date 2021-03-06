@@ -27,6 +27,7 @@
 //        user.setNationalCode("111");
 //        user.setPhoneNumber("09121115544");
 //        user.setPassword(passwordEncoder.encode("1234"));
+//        user.setEnabled(true);
 //        user.grantedAuthority(Role.ROLE_ADMIN);
 //        userRepository.save(user);
 //    }
