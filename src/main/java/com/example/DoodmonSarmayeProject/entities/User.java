@@ -2,7 +2,6 @@ package com.example.DoodmonSarmayeProject.entities;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.boot.context.properties.bind.Name;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -39,6 +38,8 @@ public class User implements UserDetails {
 
     private String email;
 
+    private boolean enabled;
+
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Role> roles;
@@ -67,7 +68,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 
     public void grantedAuthority(Role role) {
