@@ -54,6 +54,7 @@ public class RegisterService implements UserDetailsService {
         user.setNationalCode(fUser.getNationalCode());
         user.setPhoneNumber(fUser.getPhoneNumber());
         user.setEmail(fUser.getEmail());
+        user.setEnabled(true);
 
         user.grantedAuthority(Role.ROLE_INVESTOR);
 
