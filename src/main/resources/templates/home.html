@@ -26,6 +26,10 @@
     </div>
 </div>
 
+<div sec:authorize="hasAnyAuthority('ROLE_INVESTOR')">
+    <a th:href="@{/investor/showRequestForm}" class="btn btn-primary btn-block">ایجاد درخواست جدید</a>
+</div>
+
 
 <div>
 
