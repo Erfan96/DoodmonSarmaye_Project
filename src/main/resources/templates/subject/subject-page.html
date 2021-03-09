@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>صفحه مدیریت موضوعات</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+
+<table dir="rtl" class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>عنوان</th>
+        <th>تغییر</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="sub : ${allSubjects}">
+        <td th:text="${sub.title}"></td>
+        <td>
+        <form th:action="@{/removeSubject(Id=${sub.getId()})}" method="post">
+                <div>
+                    <button type="submit" class="btn btn-primary">حذف</button>
+                </div>
+        </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div dir="rtl">
+    <form th:action="@{/addSubject}" th:field="${subject}" method="post">
+        <hr>
+        <div class="input-group">
+            &nbsp;&nbsp;
+            <label for="title">برای وارد کردن موضوع جدید عنوان را وارد کنید و آن را ثبت کنید</label>
+        </div>
+
+        <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"></span>
+            <input dir="rtl" id="title" type="text" th:field="*{subject.title}" placeholder="عنوان" class="form-control" th:errorclass="fieldError" required />
+        </div>
+
+        <div style="margin-top: 10px" class="form-group">
+            <div class="col-sm-6 controls">
+                <button type="submit" class="btn btn-primary">ثبت</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
