@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>اطلاعات حساب کاربری سرمایه گذار</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div>
+
+    <div dir="rtl">
+        <a role="button" class="btn btn-info" th:href="@{/responsible/listRequestsInvestor(Id=${user.getId()})}">لیست درخواست های سرمایه گذار</a>
+    </div>
+
+    <div id="loginbox" style="margin-left: 550px; margin-top: 50px;"
+         class="mainbox col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
+
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+                <div dir="rtl" class="panel-title">اطلاعات سرمایه گذار</div>
+            </div>
+
+            <div style="padding-top: 30px" class="panel-body">
+
+                <div th:object="${user}" class="form-horizontal">
+
+                    <div>
+                        <input type="hidden" th:field="*{id}"/>
+                    </div>
+
+                    <div dir="rtl">
+                    &nbsp;&nbsp;&nbsp;<label for="username">نام کاربری</label>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input id="username" th:field="*{username}" class="form-control" readonly/>
+                    </div>
+                    </div>
+
+                    <div dir="rtl">
+                    &nbsp;&nbsp;&nbsp;<label for="name">نام</label>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input id="name" th:field="*{firstName}" class="form-control" readonly/>
+                    </div>
+                    </div>
+
+                    <div dir="rtl">
+                        &nbsp;&nbsp;&nbsp;<label for="name">نام خانوادگی</label>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input th:field="*{lastName}" class="form-control" readonly/>
+                    </div>
+                    </div>
+
+                    <div dir="rtl">
+                        &nbsp;&nbsp;&nbsp;<label for="name">کدملی</label>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input th:field="*{nationalCode}" class="form-control" readonly/>
+                    </div>
+                    </div>
+
+                    <div dir="rtl">
+                        &nbsp;&nbsp;&nbsp;<label for="name">شماره موبایل</label>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input th:field="*{phoneNumber}" class="form-control" readonly/>
+                    </div>
+                    </div>
+
+                    <div dir="rtl">
+                        &nbsp;&nbsp;&nbsp;<label for="name">ایمیل</label>
+                    <div style="margin-bottom: 25px" class="input-group">
+                        <span class="input-group-addon"></span>
+                        <input th:field="*{email}" class="form-control" readonly/>
+                    </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
