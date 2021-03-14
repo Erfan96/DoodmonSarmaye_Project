@@ -47,7 +47,7 @@ public class InvestorController {
 
     @GetMapping("/listRequests")
     public String showListOfRequest(@ModelAttribute("log-user") User user, Model model) {
-        List<Request> requests = requestService.getAllRequest(user);
+        List<Request> requests = requestService.getAllRequestByUser(user);
         model.addAttribute("requests", requests);
         return "/investor/listRequest_page";
     }
