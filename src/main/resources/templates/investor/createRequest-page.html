@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>صفحه ایجاد درخواست</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<form th:action="@{/investor/createRequest}" th:object="${request}" method="post">
+    <div dir="rtl" class="form-group">
+
+        <div align="center">
+            <div style="margin-bottom: 25px">
+                <h2>ثبت درخواست جدید توسط <b><span sec:authentication="name">Username</span></b></h2>
+            </div>
+        </div>
+
+        <div>
+            <input th:field="*{user}" type="hidden">
+        </div>
+
+        &nbsp;&nbsp;
+        <label for="subject">موضوع</label>
+        <div style="margin-bottom: 25px" class="input-group">
+                <span class="input-group-addon"></span>
+                <select class="form-control selectpicker" th:field="*{subject}" id="subject" th:errorclass="fieldError"
+                        required>
+                    <option value="">یک موضوع را انتخاب کنید</option>
+                    <option th:each="sub : ${subjects}"
+                            th:value="${sub.id}"
+                            th:text="${sub.title}">
+                    </option>
+                </select>
+        </div>
+        <br>
+
+        &nbsp;&nbsp;
+        <label for="description">شرح</label>
+            <div style="margin-bottom: 25px" class="input-group">
+                <span class="input-group-addon"></span>
+                <textarea id="description" class="form-control" th:field="*{description}" rows="5" required></textarea>
+            </div>
+        <div th:if="${#fields.hasErrors('description')}"
+             style="margin-bottom: 25px" class="text-danger">
+            <ul>
+                <li th:each="err : ${#fields.errors('description')}" th:text="${err}"/>
+            </ul>
+        </div>
+
+        <br>
+        &nbsp;&nbsp;
+        <label >پیوست</label>
+        <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"></span>
+        </div>
+        <!--    <div th:if="${#fields.hasErrors('description')}"-->
+        <!--         style="margin-bottom: 25px" class="text-danger">-->
+        <!--        <ul>-->
+        <!--            <li th:each="err : ${#fields.errors('description')}" th:text="${err}"/>-->
+        <!--        </ul>-->
+        <!--    </div>-->
+    </div>
+
+
+    <div style="margin-top: 10px" class="form-group">
+        <div class="col-sm-6 controls">
+            <button type="submit" class="btn btn-primary">ثبت</button>
+        </div>
+    </div>
+</form>
+</body>
+</html>
