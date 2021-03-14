@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>صفحه اصلی</title>
@@ -13,7 +13,6 @@
 <div align="center">
     <div sec:authorize="isAuthenticated()">
         <h3> خوش آمدید <b><span sec:authentication="name">Username</span></b></h3>
-        &nbsp;
         <div sec:authorize="hasRole('ADMIN')">
             <b>راهبر سامانه</b>
         </div>
@@ -25,27 +24,30 @@
         </div>
     </div>
 </div>
-
-<div sec:authorize="hasAnyAuthority('ROLE_INVESTOR')">
-    <a th:href="@{/investor/showRequestForm}" class="btn btn-primary btn-block">ایجاد درخواست جدید</a>
-</div>
-
+<br>
 
 <div>
-
     <div dir="rtl">
         <a th:href="@{/showFormForUpdate}" class="btn btn-warning">ویرایش حساب کاربری</a>
     </div>
 
     <div dir="rtl">
-    <a th:href="@{/logout}" class="btn btn-danger">خروج</a>
+        <a th:href="@{/logout}" class="btn btn-danger">خروج</a>
     </div>
 
 
+    <div style="margin-top: 50px" sec:authorize="hasAnyAuthority('ROLE_INVESTOR')">
+        <a th:href="@{/investor/showRequestForm}" class="btn btn-primary btn-block">ایجاد درخواست جدید</a>
+    </div>
+
+    <div style="margin-top: 10px" sec:authorize="hasAnyAuthority('ROLE_INVESTOR')">
+        <a th:href="@{/investor/listRequests}" class="btn btn-primary btn-block">مشاهده درخواست ها</a>
+    </div>
+
     <div sec:authorize="hasAnyAuthority('ROLE_ADMIN')" dir="ltr">
-    <form th:action="@{/admin/adminPage}">
-        <input class="btn btn-info" type="submit" value="ورود به صفحه راهبر سامانه">
-    </form>
+        <form th:action="@{/admin/adminPage}">
+            <input class="btn btn-info" type="submit" value="ورود به صفحه راهبر سامانه">
+        </form>
     </div>
 </div>
 
