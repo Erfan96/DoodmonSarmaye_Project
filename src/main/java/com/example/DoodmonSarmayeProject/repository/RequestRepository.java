@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface RequestRepository extends JpaRepository<Request, Long> {
    List<Request> findAllByUserIdOrderByDateDesc(Long id);
+   List<Request> findByOrderByDateDesc();
 }
