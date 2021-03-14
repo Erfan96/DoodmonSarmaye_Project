@@ -44,6 +44,10 @@
         <a th:href="@{/investor/listRequests}" class="btn btn-primary btn-block">مشاهده درخواست ها</a>
     </div>
 
+    <div style="margin-top: 10px" sec:authorize="hasAnyAuthority('ROLE_RESPONSIBLE')">
+        <a th:href="@{/responsible/listRequests}" class="btn btn-primary btn-block">مشاهده درخواست ها</a>
+    </div>
+
     <div sec:authorize="hasAnyAuthority('ROLE_ADMIN')" dir="ltr">
         <form th:action="@{/admin/adminPage}">
             <input class="btn btn-info" type="submit" value="ورود به صفحه راهبر سامانه">
