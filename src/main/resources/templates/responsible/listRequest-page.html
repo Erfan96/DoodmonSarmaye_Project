@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>صفحه مشاهده درخواست ها</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<table dir="rtl" class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <div align="center">
+            <h1>لیست درخواست ها</h1>
+        </div>
+    </tr>
+    <tr>
+        <th>نام کاربری</th>
+        <th>موضوع</th>
+        <th>زمان ثبت درخواست</th>
+        <th>وضعیت</th>
+        <th>جزئیات</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="req : ${requests}">
+        <td th:text="${req.user.username}"></td>
+        <td th:text="${req.getSubject().title}"></td>
+        <td th:text="${req.getDate()}"></td>
+        <td th:switch="${req.getStatus().name()}">
+            <p th:case="'STATUS_CONSIDERATION'">در حال رسیدگی</p>
+            <p th:case="'STATUS_ANSWERED'">پاسخ داده شده</p>
+            <p th:case="'STATUS_CLOSED'">بسته شده</p>
+        </td>
+        <td>
+            <a th:href="@{/responsible/(Id=${req.getId()})}" role="button" class="btn btn-primary">مشاهده درخواست</a>
+            <a th:href="@{/responsible/information(Id=${req.getUser().getId()})}" role="button" class="btn btn-primary">مشاهده کاربر</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
