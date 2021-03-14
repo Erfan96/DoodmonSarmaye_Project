@@ -35,6 +35,4 @@ public class Request {
     @NotBlank(message = "شرح درخواست نمی تواند خالی باشد")
     @Size(max = 4000, message = "طول پیام بیشتر از حد تعیین شده است")
     private String description;
-
-    
 }
