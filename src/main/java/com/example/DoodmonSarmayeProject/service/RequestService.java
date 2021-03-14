@@ -24,7 +24,7 @@ public class RequestService {
         requestRepository.save(request);
     }
 
-    public List<Request> getAllRequest(User user) {
+    public List<Request> getAllRequestByUser(User user) {
        return this.requestRepository.findAllByUserIdOrderByDateDesc(user.getId());
     }
 
@@ -40,5 +40,9 @@ public class RequestService {
         request.setStatus(req.getStatus());
         request.setDate(LocalDateTime.now());
         this.requestRepository.save(request);
+    }
+
+    public List<Request> getAllRequest() {
+        return this.requestRepository.findByOrderByDateDesc();
     }
 }
