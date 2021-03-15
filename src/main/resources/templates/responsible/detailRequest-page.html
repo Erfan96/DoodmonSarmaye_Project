@@ -12,7 +12,15 @@
 
         <div align="center">
             <div style="margin-bottom: 25px">
-                <h2>مشاهده درخواست</h2>
+                <div class="well" th:if="${request.status.name() == 'STATUS_CONSIDERATION'}">
+                    <h2>پاسخ به درخواست</h2>
+                </div>
+                <div class="well" th:if="${request.status.name() == 'STATUS_ANSWERED'}">
+                    <h2>مشاهده درخواست و پاسخ</h2>
+                </div>
+                <div class="well" th:if="${request.status.name() == 'STATUS_CLOSED'}">
+                    <h2>مشاهده درخواست و پاسخ</h2>
+                </div>
             </div>
         </div>
 
@@ -29,7 +37,7 @@
         <div style="margin-bottom: 25px" class="input-group">
             <span class="input-group-addon"></span>
             <input class="form-control selectpicker" th:field="*{subject.title}" id="subject" readonly>
-         </div>
+        </div>
         <br>
 
         &nbsp;&nbsp;
@@ -50,7 +58,7 @@
         <div id="status" style="margin-bottom: 25px" class="input-group">
             <span class="input-group-addon"></span>
             <div class="well" th:if="${request.status.name() == 'STATUS_CONSIDERATION'}">
-                &nbsp;&nbsp;  در انتظار پاسخ
+                &nbsp;&nbsp; در انتظار پاسخ
             </div>
             <div class="well" th:if="${request.status.name() == 'STATUS_ANSWERED'}">
                 &nbsp;&nbsp;پاسخ داده شده
@@ -64,7 +72,7 @@
         <br>
         &nbsp;&nbsp;
 
-        <label >پیوست</label>
+        <label>پیوست</label>
         <div style="margin-bottom: 25px" class="input-group">
             <span class="input-group-addon"></span>
         </div>
@@ -73,11 +81,48 @@
     <br>
     &nbsp;&nbsp;
 
-<!--    <div style="margin-top: 10px" class="form-group">-->
-<!--        <div class="col-sm-6 controls">-->
-<!--            <button type="submit" class="btn btn-primary">ارسال</button>-->
-<!--        </div>-->
-<!--    </div>-->
+    <hr>
 </div>
+
+<form th:action="@{/responsible/sendResponse}" th:object="${response}" method="post">
+    <div dir="rtl" class="form-group">
+        <div align="center">
+            <div style="margin-bottom: 25px">
+
+                <div class="well">
+                    <h1>پاسخ مسئول رسیدگی به درخواست</h1>
+                </div>
+            </div>
+        </div>
+
+                <div>
+                    <input th:field="*{forUser}" type="hidden">
+                </div>
+
+                <div>
+                    <input th:field="*{request}" type="hidden">
+                </div>
+
+                <div>
+                    <input th:field="*{fromUser}" type="hidden">
+                </div>
+
+                <label for="des">شرح</label>
+                <div style="margin-bottom: 25px" class="input-group">
+                    <span class="input-group-addon"></span>
+                    <textarea id="des" class="form-control" th:field="*{description}" rows="5" required></textarea>
+                </div>
+
+
+
+    <span th:if="${request.status.name() == 'STATUS_CONSIDERATION'}">
+    <div style="margin-top: 10px" class="form-group">
+        <div class="col-sm-6 controls">
+            <button type="submit" class="btn btn-primary">ارسال پاسخ</button>
+        </div>
+    </div>
+    </span>
+    </div>
+</form>
 </body>
 </html>
