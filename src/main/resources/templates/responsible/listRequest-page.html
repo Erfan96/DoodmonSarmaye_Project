@@ -10,6 +10,7 @@
 <table dir="rtl" class="table table-bordered table-striped">
     <thead class="thead-dark">
     <tr>
+
         <div align="center">
             <h1>لیست درخواست ها</h1>
         </div>
@@ -34,7 +35,7 @@
             <p th:case="'STATUS_CLOSED'">بسته شده</p>
         </td>
         <td>
-            <a th:href="@{/responsible/(Id=${req.getId()})}" role="button" class="btn btn-primary">مشاهده درخواست</a>
+            <a th:href="@{/responsible/findRequest(Id=${req.getId()})}" role="button" class="btn btn-primary">مشاهده درخواست</a>
             <a th:href="@{/responsible/information(Id=${req.getUser().getId()})}" role="button" class="btn btn-primary">مشاهده کاربر</a></td>
     </tr>
     </tbody>
