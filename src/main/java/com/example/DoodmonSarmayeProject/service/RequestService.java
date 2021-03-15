@@ -5,7 +5,6 @@ import com.example.DoodmonSarmayeProject.entities.Status;
 import com.example.DoodmonSarmayeProject.entities.User;
 import com.example.DoodmonSarmayeProject.repository.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -44,5 +43,11 @@ public class RequestService {
 
     public List<Request> getAllRequest() {
         return this.requestRepository.findByOrderByDateDesc();
+    }
+
+    public void changeStatus(Long id) {
+        Request request = getRequestById(id);
+        request.setStatus(Status.STATUS_ANSWERED);
+        this.requestRepository.save(request);
     }
 }
