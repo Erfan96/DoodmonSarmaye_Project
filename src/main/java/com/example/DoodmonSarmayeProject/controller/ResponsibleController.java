@@ -2,6 +2,7 @@ package com.example.DoodmonSarmayeProject.controller;
 
 import com.example.DoodmonSarmayeProject.entities.Request;
 import com.example.DoodmonSarmayeProject.entities.Response;
+import com.example.DoodmonSarmayeProject.entities.Status;
 import com.example.DoodmonSarmayeProject.entities.User;
 import com.example.DoodmonSarmayeProject.service.RequestService;
 import com.example.DoodmonSarmayeProject.service.ResponseService;
@@ -67,7 +68,7 @@ public class ResponsibleController {
         }
 
         this.responseService.saveResponse(response);
-        this.requestService.changeStatus(response.getRequest().getId());
+        this.requestService.changeStatus(response.getRequest().getId(), Status.STATUS_ANSWERED);
         return "redirect:/responsible/listRequests";
     }
 }
