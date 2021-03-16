@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>مشاهده درخواست</title>
@@ -12,7 +12,9 @@
 
         <div align="center">
             <div style="margin-bottom: 25px">
-                <h2>مشاهده درخواست</h2>
+                <div class="well">
+                    <h2>مشاهده درخواست</h2>
+                </div>
             </div>
         </div>
 
@@ -63,7 +65,7 @@
         <div id="status" style="margin-bottom: 25px" class="input-group">
             <span class="input-group-addon"></span>
             <div class="well" th:if="${request.status.name() == 'STATUS_CONSIDERATION'}">
-                &nbsp;&nbsp;  در انتظار پاسخ
+                &nbsp;&nbsp; در انتظار پاسخ
             </div>
             <div class="well" th:if="${request.status.name() == 'STATUS_ANSWERED'}">
                 &nbsp;&nbsp;پاسخ داده شده
@@ -77,7 +79,7 @@
         <br>
         &nbsp;&nbsp;
 
-        <label >پیوست</label>
+        <label>پیوست</label>
         <div style="margin-bottom: 25px" class="input-group">
             <span class="input-group-addon"></span>
         </div>
@@ -92,11 +94,49 @@
     <br>
     &nbsp;&nbsp;
 
-    <div style="margin-top: 10px" class="form-group">
-        <div class="col-sm-6 controls">
-            <button type="submit" class="btn btn-primary">به روز رسانی</button>
+    <div th:if="${request.status.name() == 'STATUS_CONSIDERATION'}">
+        <div style="margin-top: 10px" class="form-group">
+            <div class="col-sm-6 controls">
+                <button type="submit" class="btn btn-primary">به روز رسانی</button>
+            </div>
         </div>
     </div>
 </form>
+
+<br>
+<hr>
+
+<div th:unless="${request.status.name() == 'STATUS_CONSIDERATION'}">
+    <div dir="rtl">
+        <div align="center">
+            <div style="margin-bottom: 25px">
+
+                <div class="well">
+                    <h1>پاسخ مسئول رسیدگی به درخواست</h1>
+                </div>
+            </div>
+        </div>
+        &nbsp;&nbsp;<label for="responsible">نام کاربری مسئول پاسخ دهنده</label>
+        <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"></span>
+            <input id="responsible" class="form-control" th:field="*{response.fromUser.username}" rows="5" readonly>
+        </div>
+
+        &nbsp;&nbsp;<label for="des">پاسخ</label>
+        <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"></span>
+            <textarea id="des" class="form-control" th:field="*{response.description}" rows="5" readonly></textarea>
+        </div>
+    </div>
+</div>
+
+<div th:if="${request.status.name() == 'STATUS_ANSWERED'}">
+
+    <form th:action="@{/investor/closeRequest(Id=${request.getId()})}" method="post">
+        <div style="margin-top: 10px" class="form-group">
+           <button type="submit" class="btn btn-primary btn-lg btn-block">بستن درخواست</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>
