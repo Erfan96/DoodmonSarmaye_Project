@@ -40,8 +40,7 @@
         </div>
         <br>
 
-        &nbsp;&nbsp;
-        <label for="description">شرح</label>
+        &nbsp;&nbsp;<label for="description">شرح</label>
         <div style="margin-bottom: 25px" class="input-group">
             <span class="input-group-addon"></span>
             <textarea id="description" class="form-control" th:field="*{description}" rows="5" readonly></textarea>
@@ -95,30 +94,28 @@
             </div>
         </div>
 
-                <div>
-                    <input th:field="*{forUser}" type="hidden">
-                </div>
+        <div>
+            <input th:field="*{forUser}" type="hidden">
+        </div>
 
-                <div>
-                    <input th:field="*{request}" type="hidden">
-                </div>
+        <div>
+            <input th:field="*{request}" type="hidden">
+        </div>
 
-                <div>
-                    <input th:field="*{fromUser}" type="hidden">
-                </div>
+        <div>
+            <input th:field="*{fromUser}" type="hidden">
+        </div>
 
-                <label for="des">شرح</label>
-                <div style="margin-bottom: 25px" class="input-group">
-                    <span class="input-group-addon"></span>
-                    <textarea id="des" class="form-control" th:field="*{description}" rows="5" required></textarea>
-                </div>
-
-
+        &nbsp;&nbsp;<label for="des">پاسخ</label>
+        <div style="margin-bottom: 25px" class="input-group">
+            <span class="input-group-addon"></span>
+            <textarea id="des" class="form-control" th:field="*{description}" rows="5" required></textarea>
+        </div>
 
     <span th:if="${request.status.name() == 'STATUS_CONSIDERATION'}">
-    <div style="margin-top: 10px" class="form-group">
-        <div class="col-sm-6 controls">
-            <button type="submit" class="btn btn-primary">ارسال پاسخ</button>
+    <div align="center">
+        <div style="margin-top: 10px" class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg btn-block">ارسال پاسخ</button>
         </div>
     </div>
     </span>
