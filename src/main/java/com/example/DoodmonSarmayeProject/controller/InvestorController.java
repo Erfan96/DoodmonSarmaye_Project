@@ -1,9 +1,8 @@
 package com.example.DoodmonSarmayeProject.controller;
 
-import com.example.DoodmonSarmayeProject.entities.Request;
-import com.example.DoodmonSarmayeProject.entities.Subject;
-import com.example.DoodmonSarmayeProject.entities.User;
+import com.example.DoodmonSarmayeProject.entities.*;
 import com.example.DoodmonSarmayeProject.service.RequestService;
+import com.example.DoodmonSarmayeProject.service.ResponseService;
 import com.example.DoodmonSarmayeProject.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +23,9 @@ public class InvestorController {
 
     @Autowired
     private SubjectService subjectService;
+
+    @Autowired
+    private ResponseService responseService;
 
     @GetMapping("/showRequestForm")
     public String showRequestPage(@ModelAttribute("log-user") User user, Request request, Model model) {
@@ -56,8 +58,10 @@ public class InvestorController {
     public String detailOfRequest(@RequestParam("Id") Long id, Model model) {
         Request request = this.requestService.getRequestById(id);
         List<Subject> subjects = this.subjectService.findAllSubjects();
-        model.addAttribute("subjects", subjects);
+        Response response = this.responseService.getResponseByRequest(request);
         model.addAttribute("request", request);
+        model.addAttribute("subjects", subjects);
+        model.addAttribute("response", response);
         return "/investor/detailRequest-page";
     }
 
@@ -70,6 +74,12 @@ public class InvestorController {
         }
 
         this.requestService.updateRequest(request);
+        return "redirect:/investor/listRequests";
+    }
+
+    @PostMapping("/closeRequest")
+    public String closeRequest(@RequestParam("Id")Long id) {
+        this.requestService.changeStatus(id, Status.STATUS_CLOSED);
         return "redirect:/investor/listRequests";
     }
 }
