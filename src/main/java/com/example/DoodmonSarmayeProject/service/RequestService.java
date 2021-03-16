@@ -45,9 +45,9 @@ public class RequestService {
         return this.requestRepository.findByOrderByDateDesc();
     }
 
-    public void changeStatus(Long id) {
+    public void changeStatus(Long id, Status status) {
         Request request = getRequestById(id);
-        request.setStatus(Status.STATUS_ANSWERED);
+        request.setStatus(status);
         this.requestRepository.save(request);
     }
 }
