@@ -10,4 +10,5 @@ import java.util.List;
 public interface RequestRepository extends JpaRepository<Request, Long> {
    List<Request> findAllByUserIdOrderByDateDesc(Long id);
    List<Request> findByOrderByDateDesc();
+   Request findFirstByUserIdOrderByDateDesc(Long id);
 }
