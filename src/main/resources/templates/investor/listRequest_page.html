@@ -31,7 +31,9 @@
             <p th:case="'STATUS_ANSWERED'">پاسخ داده شده</p>
             <p th:case="'STATUS_CLOSED'">بسته شده</p>
         </td>
-        <td><a th:href="@{/investor/findRequest(Id=${req.getId()})}" role="button" class="btn btn-primary">مشاهده</a></td>
+        <td>
+            <span th:if="${req.status.name() == 'STATUS_CONSIDERATION'}"><a th:href="@{/investor/uploadFilePage(Id=${req.getId()})}" role="button" class="btn btn-primary">پیوست فایل جدید</a></span>
+            <a th:href="@{/investor/findRequest(Id=${req.getId()})}" role="button" class="btn btn-primary">مشاهده</a></td>
     </tr>
     </tbody>
 </table>
