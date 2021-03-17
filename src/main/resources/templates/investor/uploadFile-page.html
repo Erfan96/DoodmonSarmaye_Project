@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>صفحه بارگزاری فایل</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div dir="rtl" align="center">
+
+    <h1>می توانید فایل مورد نظرتان را به درخواست ایجاد شده اضافه کنید</h1>
+    <hr/>
+    <h4>بارگزاری فایل :</h4>
+    <form method="POST" th:action="@{'/investor/uploadFile/'+${req.id}}" enctype="multipart/form-data">
+        <input type="file" name="file" required/> <br/><br/>
+        <button type="submit" class="btn btn-primary">بار گزاری</button>
+    </form>
+
+    <br><br>
+
+    <form th:action="@{/}">
+        <input type="submit" class="btn btn-primary btn-lg btn-block" value="بازگشت به صفحه اصلی">
+    </form>
+    <hr/>
+    <div th:if="${message}">
+        <h2 th:text="${message}"/>
+    </div>
+</div>
+</body>
+</html>
