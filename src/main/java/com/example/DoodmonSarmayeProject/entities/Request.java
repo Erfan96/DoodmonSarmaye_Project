@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -35,4 +36,7 @@ public class Request {
     @NotBlank(message = "شرح درخواست نمی تواند خالی باشد")
     @Size(max = 4000, message = "طول پیام بیشتر از حد تعیین شده است")
     private String description;
+
+    @OneToMany
+    private Set<DBFile> file;
 }
