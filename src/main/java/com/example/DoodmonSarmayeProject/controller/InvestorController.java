@@ -1,6 +1,7 @@
 package com.example.DoodmonSarmayeProject.controller;
 
 import com.example.DoodmonSarmayeProject.entities.*;
+import com.example.DoodmonSarmayeProject.service.FileStorageService;
 import com.example.DoodmonSarmayeProject.service.RequestService;
 import com.example.DoodmonSarmayeProject.service.ResponseService;
 import com.example.DoodmonSarmayeProject.service.SubjectService;
@@ -9,8 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -26,6 +30,9 @@ public class InvestorController {
 
     @Autowired
     private ResponseService responseService;
+
+    @Autowired
+    private FileStorageService fileStorageService;
 
     @GetMapping("/showRequestForm")
     public String showRequestPage(@ModelAttribute("log-user") User user, Request request, Model model) {
@@ -43,8 +50,28 @@ public class InvestorController {
             return "/investor/createRequest-page";
         }
 
-        requestService.saveRequest(request);
-        return "home";
+        Request req = this.requestService.saveRequest(request);
+        model.addAttribute("req", req);
+        return "/investor/uploadFile-page";
+    }
+
+    @GetMapping("/uploadFilePage")
+    public String uploadFilePage(@RequestParam("Id") Long id, Model model) {
+        Request request = this.requestService.getRequestById(id);
+        model.addAttribute("req", request);
+        return "/investor/uploadFile-page";
+    }
+
+    @PostMapping("/uploadFile/{id}")
+    public String uploadFile(@RequestParam("file") MultipartFile file, @PathVariable Long id,
+                             Model model) throws IOException {
+
+        DBFile dbFile = this.fileStorageService.store(file);
+        this.requestService.addFileToRequest(dbFile, id);
+        Request request = this.requestService.getRequestById(id);
+        model.addAttribute("req", request);
+
+        return "/investor/uploadFile-page";
     }
 
     @GetMapping("/listRequests")
