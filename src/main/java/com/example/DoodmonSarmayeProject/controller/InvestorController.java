@@ -64,14 +64,15 @@ public class InvestorController {
 
     @PostMapping("/uploadFile/{id}")
     public String uploadFile(@RequestParam("file") MultipartFile file, @PathVariable Long id,
-                             Model model) throws IOException {
+                             Model model, RedirectAttributes attributes) throws IOException {
 
         DBFile dbFile = this.fileStorageService.store(file);
         this.requestService.addFileToRequest(dbFile, id);
         Request request = this.requestService.getRequestById(id);
         model.addAttribute("req", request);
 
-        return "/investor/uploadFile-page";
+        attributes.addFlashAttribute("message","فایل شما با موفقیت به درخواست پیوست شد" + " " + file.getOriginalFilename());
+        return "redirect:/investor/listRequests";
     }
 
     @GetMapping("/listRequests")
