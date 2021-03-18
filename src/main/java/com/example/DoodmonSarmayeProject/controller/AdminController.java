@@ -1,6 +1,10 @@
 package com.example.DoodmonSarmayeProject.controller;
 
+import com.example.DoodmonSarmayeProject.entities.Request;
+import com.example.DoodmonSarmayeProject.entities.Response;
 import com.example.DoodmonSarmayeProject.entities.User;
+import com.example.DoodmonSarmayeProject.service.RequestService;
+import com.example.DoodmonSarmayeProject.service.ResponseService;
 import com.example.DoodmonSarmayeProject.service.UserService;
 import com.example.DoodmonSarmayeProject.user.FrontUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +23,12 @@ public class AdminController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RequestService requestService;
+
+    @Autowired
+    private ResponseService responseService;
 
     @GetMapping("/adminPage")
     public String adminPage() {
@@ -108,5 +118,21 @@ public class AdminController {
 
         this.userService.saveUserFromAdminWithRole(frontUser);
         return "redirect:/admin/list";
+    }
+
+    @GetMapping("/listRequestsInvestor")
+    public String listOfRequestForInvestor(@RequestParam("Id") Long id, Model model) {
+        List<Request> requests = this.requestService.getAllRequestByUser(userService.loadUserByID(id));
+        model.addAttribute("requests", requests);
+        return "/admin/listRequestForAnInvestor-page";
+    }
+
+    @GetMapping("/findRequest")
+    public String detailOfRequest(@RequestParam("Id") Long id, Model model) {
+        Request request = this.requestService.getRequestById(id);
+        Response response = this.responseService.getResponseByRequest(request);
+        model.addAttribute("request", request);
+        model.addAttribute("response", response);
+        return "/admin/detailRequest-page";
     }
 }
