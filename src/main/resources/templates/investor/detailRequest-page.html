@@ -45,7 +45,8 @@
         <label for="description">شرح</label>
         <div style="margin-bottom: 25px" class="input-group">
             <span class="input-group-addon"></span>
-            <textarea id="description" class="form-control" th:field="*{description}" rows="5" required></textarea>
+            <textarea id="description" class="form-control" th:field="*{description}"
+                      th:type="text" th:maxlength="4000" rows="7" required></textarea>
         </div>
         <div th:if="${#fields.hasErrors('description')}"
              style="margin-bottom: 25px" class="text-danger">
@@ -82,13 +83,14 @@
         <label>پیوست</label>
         <div style="margin-bottom: 25px" class="input-group">
             <span class="input-group-addon"></span>
+            <div class="well">
+                <tr th:each="file : ${request.file}">
+                    <td th:text="${file.getFileName()}"></td>
+                    <a th:href="@{'/downloadFile/'+${file.id}}" role="button">دانلود</a>
+                    &nbsp;&nbsp;&nbsp;
+                </tr>
+            </div>
         </div>
-        <!--    <div th:if="${#fields.hasErrors('description')}"-->
-        <!--         style="margin-bottom: 25px" class="text-danger">-->
-        <!--        <ul>-->
-        <!--            <li th:each="err : ${#fields.errors('description')}" th:text="${err}"/>-->
-        <!--        </ul>-->
-        <!--    </div>-->
     </div>
 
     <br>
@@ -134,7 +136,7 @@
 
     <form th:action="@{/investor/closeRequest(Id=${request.getId()})}" method="post">
         <div style="margin-top: 10px" class="form-group">
-           <button type="submit" class="btn btn-primary btn-lg btn-block">بستن درخواست</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">بستن درخواست</button>
         </div>
     </form>
 </div>
