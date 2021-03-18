@@ -5,6 +5,7 @@ import com.example.DoodmonSarmayeProject.validation.FieldMatch;
 import com.example.DoodmonSarmayeProject.validation.ValidEmail;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -22,10 +23,12 @@ public class FrontUser {
 
     @NotBlank(message = "باید وارد شود")
     @Size(min = 2, max = 50 ,message = "نامعتبر است")
+    @Pattern(regexp="^[A-Za-z]+$",message="نام باید شامل حروف باشد")
     private String firstName;
 
     @NotBlank(message = "باید وارد شود")
     @Size(min = 2, max = 50 ,message = "نامعتبر است")
+    @Pattern(regexp="^[A-Za-z]+$",message="نام خانوادگی باید شامل حروف باشد")
     private String lastName;
 
     @NotBlank(message = "باید وارد شود")
@@ -38,10 +41,12 @@ public class FrontUser {
 
     @NotBlank(message = "باید وارد شود")
     @Size(min = 11, max = 11 ,message = "نامعتبر است")
+    @Pattern(regexp="^[0-9]*$", message = "فقط عدد وارد شود")
     private String phoneNumber;
 
     @NotBlank(message = "باید وارد شود")
-    @Size(message = "نامعتبر است")
+    @Size(min = 10, max = 10 ,message = "نامعتبر است")
+    @Pattern(regexp="^[0-9]*$", message = "فقط عدد وارد شود")
     private String nationalCode;
 
     @ValidEmail
